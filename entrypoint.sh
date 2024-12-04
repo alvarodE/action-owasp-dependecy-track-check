@@ -38,8 +38,7 @@ case $LANGUAGE in
             exit 1
         fi
         path="bom.xml"
-        npx --yes cyclonedx-bom --help
-        BoMResult=$(cyclonedx-bom -o bom.xml)
+        BoMResult=$(npx --yes cyclonedx-bom -o bom.xml)
         ;;
     
     "python")
