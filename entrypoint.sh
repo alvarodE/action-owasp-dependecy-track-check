@@ -15,7 +15,6 @@ case $LANGUAGE in
     "npm")
         lscommand=$(ls)
         echo "[*] Processing npm BoM"
-        apt-get install --no-install-recommends -y nodejs
         npm install
         npm audit fix --force
         if [ ! $? = 0 ]; then
@@ -31,19 +30,15 @@ case $LANGUAGE in
     "pnpm")
         lscommand=$(ls)
         echo "[*] Processing pnpm BoM"
-        apt-get install --no-install-recommends -y nodejs
         npm install -g pnpm
-        pnpm env use --global 18.20
-        pnpm add -g pnpm
         pnpm install
         pnpm audit --fix
         if [ ! $? = 0 ]; then
             echo "[-] Error executing pnpm install. Stopping the action!"
             exit 1
         fi
-        npm install -g @cyclonedx/bom
         path="bom.xml"
-        cyclonedx-bom --help
+        npx --yes cyclonedx-bom --help
         BoMResult=$(cyclonedx-bom -o bom.xml)
         ;;
     
