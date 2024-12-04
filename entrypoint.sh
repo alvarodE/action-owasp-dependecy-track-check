@@ -157,8 +157,7 @@ processing=$(curl $INSECURE $VERBOSE -s --location --request GET $DTRACK_URL/api
 --header "X-Api-Key: $DTRACK_KEY" | jq '.processing')
 
 
-while [ $processing = true ]
-do
+while [ $processing = true ]; do
     sleep 5
     processing=$(curl  $INSECURE $VERBOSE -s --location --request GET $DTRACK_URL/api/v1/bom/token/$token \
 --header "X-Api-Key: $DTRACK_KEY" | jq '.processing')
