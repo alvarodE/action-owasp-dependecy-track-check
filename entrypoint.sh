@@ -15,7 +15,6 @@ case $LANGUAGE in
     "npm")
         lscommand=$(ls)
         echo "[*] Processing npm BoM"
-        curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
         apt-get install --no-install-recommends -y nodejs
         npm install
         npm audit fix --force
@@ -32,7 +31,6 @@ case $LANGUAGE in
     "pnpm")
         lscommand=$(ls)
         echo "[*] Processing pnpm BoM"
-        curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
         apt-get install --no-install-recommends -y nodejs
         npm install -g pnpm
         pnpm env use --global 18.20

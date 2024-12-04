@@ -14,6 +14,11 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y dotnet-sdk-5.0
 
+# Add NodeSource repository for Node.js 18
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+
+# Install Node.js 18
+RUN apt-get install -y nodejs
 
 # Installing Cyclone BoM generates for the different supported languages
 
