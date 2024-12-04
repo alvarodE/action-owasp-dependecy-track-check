@@ -17,7 +17,7 @@ inputs:
   language:
     description: 'Programming language'
     required: true
-    default: 'nodejs'
+    default: 'npm'
 
 outputs:
   riskscore:

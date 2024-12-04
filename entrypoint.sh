@@ -12,9 +12,9 @@ INSECURE="--insecure"
 cd $GITHUB_WORKSPACE
 
 case $LANGUAGE in
-    "nodejs")
+    "npm")
         lscommand=$(ls)
-        echo "[*] Processing NodeJS BoM"
+        echo "[*] Processing npm BoM"
         apt-get install --no-install-recommends -y nodejs
         npm install
         npm audit fix --force
@@ -25,6 +25,25 @@ case $LANGUAGE in
         npm install -g @cyclonedx/bom
         path="bom.xml"
         cyclonedx-bom --help
+        BoMResult=$(cyclonedx-bom -o bom.xml)
+        ;;
+
+    "pnpm")
+        lscommand=$(ls)
+        echo "[*] Processing pnpm BoM"
+        apt-get install --no-install-recommends -y nodejs
+        npm install -g pnpm
+        pnpm env use --global 18.20
+        pnpm add -g pnpm
+        pnpm install
+        pnpm audit --fix
+        if [ ! $? = 0 ]; then
+            echo "[-] Error executing pnpm install. Stopping the action!"
+            exit 1
+        fi
+        npm install -g cyclonedx-node-pnpm
+        path="bom.xml"
+        cyclonedx-node-pnpm
         BoMResult=$(cyclonedx-bom -o bom.xml)
         ;;
     
