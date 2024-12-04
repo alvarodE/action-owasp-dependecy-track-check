@@ -41,9 +41,9 @@ case $LANGUAGE in
             echo "[-] Error executing pnpm install. Stopping the action!"
             exit 1
         fi
-        npm install -g cyclonedx-node-pnpm
+        npm install -g @cyclonedx/bom
         path="bom.xml"
-        cyclonedx-node-pnpm
+        cyclonedx-bom --help
         BoMResult=$(cyclonedx-bom -o bom.xml)
         ;;
     
