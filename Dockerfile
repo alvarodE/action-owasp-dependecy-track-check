@@ -11,7 +11,7 @@ RUN apt-get update \
     libc6 libgcc1 libgssapi-krb5-2 libicu66 libssl1.1 libstdc++6 zlib1g \
     && curl -sS https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb \
     && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb \
-    && apt-get update && apt-get upgrade -y \
+    && apt-get update \
     && apt-get install -y dotnet-sdk-5.0
 
 # Add NodeSource repository for Node.js 18
@@ -27,9 +27,9 @@ RUN npm -v
 # Installing Cyclone BoM generates for the different supported languages
 
 #RUN mkdir /home/dtrack && cd /home/dtrack && git clone git@github.com:SCRATCh-ITEA3/dtrack-demonstrator.git
-# RUN go mod init deptrack/main
-# RUN go get github.com/ozonru/cyclonedx-go/cmd/cyclonedx-go && cp /root/go/bin/cyclonedx-go /usr/bin/
-# RUN rm go.mod
+RUN go mod init deptrack/main
+RUN go get github.com/ozonru/cyclonedx-go/cmd/cyclonedx-go && cp /root/go/bin/cyclonedx-go /usr/bin/
+RUN rm go.mod
 
 COPY cyclonedx-linux-x64 /usr/bin/cyclonedx-cli
 RUN chmod +x /usr/bin/cyclonedx-cli
