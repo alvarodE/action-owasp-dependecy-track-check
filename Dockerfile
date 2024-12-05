@@ -14,16 +14,6 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y dotnet-sdk-5.0
 
-# Add NodeSource repository for Node.js 18
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-
-# Install Node.js 18
-RUN apt-get install -y nodejs
-
-# Verify installation
-RUN node -v
-RUN npm -v
-
 # Installing Cyclone BoM generates for the different supported languages
 
 #RUN mkdir /home/dtrack && cd /home/dtrack && git clone git@github.com:SCRATCh-ITEA3/dtrack-demonstrator.git

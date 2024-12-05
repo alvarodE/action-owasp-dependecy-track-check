@@ -15,6 +15,8 @@ case $LANGUAGE in
     "npm")
         lscommand=$(ls)
         echo "[*] Processing npm BoM"
+        curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+        apt-get install -y nodejs
         npm install
         npm audit fix --force
         if [ ! $? = 0 ]; then
@@ -28,6 +30,8 @@ case $LANGUAGE in
     "pnpm")
         lscommand=$(ls)
         echo "[*] Processing pnpm BoM"
+        curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+        apt-get install -y nodejs
         npm install -g pnpm
         pnpm install
         pnpm audit --fix
